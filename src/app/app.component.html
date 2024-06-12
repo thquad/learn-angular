@@ -1,0 +1,7 @@
+<div>
+  <button (click)="toggleVisibility()">Trigger Animation!</button>
+  <div class="text">
+    <div>Hello, this is</div>
+    <div @myAnimation *ngIf="visibility">animated!</div>
+  </div>
+</div>
