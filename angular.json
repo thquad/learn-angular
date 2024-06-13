@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "learn": {
+    "learn-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/learn",
+            "outputPath": "dist/learn-angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "learn:build:production"
+              "buildTarget": "learn-angular:build:production"
             },
             "development": {
-              "buildTarget": "learn:build:development"
+              "buildTarget": "learn-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
