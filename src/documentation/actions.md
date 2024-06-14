@@ -20,15 +20,6 @@ This datastructure can be obscured by the various creators added to the Angular 
 ## Action Creators
 
 ```typescript
-// Since NgRx v14
-export const TodoActions = createActionGroup({
-  source: 'Todo',
-  events: {
-    'Post Todo': props<{ data: TodoItem }>()
-  }
-});
-```
-```typescript
 // Since NgRx v8+
 export const TodoActions = {
   postTodo: createAction(
@@ -36,6 +27,15 @@ export const TodoActions = {
     props<{data: TodoItem}>()
   )
 };
+```
+```typescript
+// Since NgRx v14
+export const TodoActions = createActionGroup({
+  source: 'Todo',
+  events: {
+    'Post Todo': props<{ data: TodoItem }>()
+  }
+});
 ```
 
 Both implementation above return the same result. 
