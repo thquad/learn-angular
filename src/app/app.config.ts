@@ -1,10 +1,10 @@
 import { ApplicationConfig, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './route/app.routes';
+import { routes } from './share/route/app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideState, provideStore } from '@ngrx/store';
-import { todoFeature } from './store/todo/todo.reducer';
+import { todoFeature } from './share/store/todo/todo.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 export const appConfig: ApplicationConfig = {

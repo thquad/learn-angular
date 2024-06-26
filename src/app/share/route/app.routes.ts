@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { TodoWidgetComponent } from '../component/todo/todo-widget/todo-widget.component';
 import { PATH } from '../model/path.model';
+import { TodoWidgetComponent } from '../component/todo/todo-widget/todo-widget.component';
 
 export const routes: Routes = [
   {

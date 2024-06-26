@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TodoInputComponent } from '../todo-input/todo-input.component';
 import { TodoListComponent } from '../todo-list/todo-list.component';
 import { Store } from '@ngrx/store';
-import { TodoActions } from '../../../store/todo/todo.actions';
-import { selectTodoList } from '../../../store/todo/todo.reducer';
 import { AsyncPipe } from '@angular/common';
+import { selectTodoList } from '../../../store/todo/todo.reducer';
+import { TodoActions } from '../../../store/todo/todo.actions';
 
 @Component({
   selector: 'app-todo-widget',
