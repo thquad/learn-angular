@@ -1,4 +1,4 @@
-import { createFeature, createReducer, on } from "@ngrx/store"
+import { createFeature, createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store"
 import { TodoActions } from "./todo.actions"
 import { ActionState, ActionStateCreator } from "../../../shared/util/action-state"
 import { TodoItem } from "../../../shared/model/todo.model"
@@ -79,7 +79,15 @@ export const todoFeature = createFeature({
       ...state,
       todoListActionState: ActionStateCreator.onError(action.error)
     })),
-  )
+  ),
+  extraSelectors: ({selectTodoList}) => {
+    const selectSortedTodoList = createSelector(
+      selectTodoList,
+      (todoList) => [...todoList].sort((a,b) => -a.id.localeCompare(b.id))
+    )
+
+    return { selectSortedTodoList };
+  }
 });
 
 export const {
@@ -87,5 +95,6 @@ export const {
   reducer,
   selectTodoState,
   selectTodoList,
-  selectTodoListActionState
+  selectTodoListActionState,
+  selectSortedTodoList
 } = todoFeature;

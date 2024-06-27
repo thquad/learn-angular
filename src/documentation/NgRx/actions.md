@@ -1,3 +1,5 @@
+[↩ go back](../index.md)
+
 ## Actions
 
 https://ngrx.io/guide/store/actions

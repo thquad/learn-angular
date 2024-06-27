@@ -1,3 +1,6 @@
+[↩ go back](../index.md)
+
+# Reducers
 
 ```typescript
 // Since NgRx v8
@@ -41,7 +44,7 @@ export const todoFeature = createFeature({
 })
 ```
 
-The benefit of using `createFeature()` is a simplified syntax when providing the state...
+The benefit of using `createFeature()` is a simplified syntax when providing the state, as well as generated selectors based on the state properties.
 
 ```typescript
 // with createReducer
@@ -50,7 +53,6 @@ provideState({name: 'todo', reducer: todoReducer})
 provideState(todoFeature)
 ```
 
-... as well as generated selectors based on the state properties.
 Using destructuring, a set of variables can now be exported using the created feature object:
 
 ```typescript

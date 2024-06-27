@@ -1,3 +1,5 @@
+[↩ go back](../index.md)
+
 ## Store Service
 
 The store can be used after injecting it inside the component:
