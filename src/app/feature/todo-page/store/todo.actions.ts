@@ -1,5 +1,5 @@
 import { createActionGroup, props } from '@ngrx/store';
-import { TodoItem } from '../../model/todo.model';
+import { TodoItem } from '../../../shared/model/todo.model';
 
 // createActionGroup() since NgRx v14
 export const TodoActions = createActionGroup({

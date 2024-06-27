@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row mt-5">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <app-todo-input [form]="todoInput"></app-todo-input>
+      <mat-form-field class="todo-page__input-field">
+        <mat-label>Todo</mat-label>
+        <input type="text" matInput [formControl]="todoInput">
+      </mat-form-field>
     </form>
   </div>
   <div class="row mt-5">

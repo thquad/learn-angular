@@ -1,7 +1,7 @@
 import { createFeature, createReducer, on } from "@ngrx/store"
-import { TodoItem } from "../../model/todo.model"
-import { ActionState, ActionStateCreator } from "../../util/action-state"
 import { TodoActions } from "./todo.actions"
+import { TodoItem } from "../../../shared/model/todo.model"
+import { ActionState, ActionStateCreator } from "../../../shared/util/action-state"
 
 const prefillItems: TodoItem[] = [
   {

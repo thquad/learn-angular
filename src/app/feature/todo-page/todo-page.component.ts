@@ -1,21 +1,22 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { TodoInputComponent } from '../todo-input/todo-input.component';
-import { TodoListComponent } from '../todo-list/todo-list.component';
-import { Store } from '@ngrx/store';
+import { TodoListComponent } from '../../shared/component/todo/todo-list/todo-list.component';
 import { AsyncPipe } from '@angular/common';
-import { selectTodoList } from '../../../store/todo/todo.reducer';
-import { TodoActions } from '../../../store/todo/todo.actions';
+import { Store } from '@ngrx/store';
+import { MatLabel } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { TodoActions } from './store/todo.actions';
+import { selectTodoList } from './store/todo.reducer';
 
 @Component({
-  selector: 'app-todo-widget',
-  templateUrl: './todo-widget.component.html',
-  styleUrl: './todo-widget.component.scss',
+  selector: 'app-todo-page',
+  templateUrl: './todo-page.component.html',
+  styleUrl: './todo-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [ReactiveFormsModule, TodoInputComponent, TodoListComponent, AsyncPipe],
+  imports: [MatInputModule, MatLabel, ReactiveFormsModule, TodoListComponent, AsyncPipe],
 })
-export class TodoWidgetComponent {
+export class TodoPageComponent {
   fb = inject(FormBuilder);
   store = inject(Store);
 

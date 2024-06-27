@@ -1,6 +1,9 @@
 
 # Project Structure
 
+todo
+- https://v17.angular.io/guide/ngmodule-faq#what-kinds-of-modules-should-i-have-and-how-should-i-use-them
+
 How and why should folders exist?
 There isn't a clear official guideline for setting up larger angular projects.
 
@@ -13,26 +16,28 @@ A common fundamental guideline seems to be LIFT principle:
 > Appearently LIFT is defined by Google, but i couldn't find any credible source. It is mentioned in the Angular styleguide tho: https://v17.angular.io/guide/styleguide#lift
 
 The most common elements between guidelines seems to be:
-- **core** for anything imported once
-- **shared** for anything used multiple times across the app
+- **core** used by app module only
 - **feature** for any feature specific things
+- **shared** shared across features
 
-I personally don't like the word `core` here, because it's not clear for anyone unfamiliar with this structure, what's the difference between `core` and `shared` supposed to mean. Additionally, isn't any `feature` also `core`, since they are only used once accross the app?
+Core is allowed to import from feature or shared.
+Feature is allowed to import from shared.
+Shared is not allowed to import anything outside shared.
 
-## So what to do?
+After hours of research, i found a definition for core that i aggree with:
 
-I think a folder structure only makes sense in the definition of how developers are supposed to interact with any given folder:
-- core: It's a feature folder in disguise. The feature is the app itself. No imports from core allowed.
-- feature: No imports from feature (or sub-features) allowed.
-  - "feature1"
-  - "feature2"
-- shared: Imports from shared allowed.
+> The main reason for generating CoreModule is making AppModule a bit leaner.
 
-So core and feature can import anything from shared, but files are not allowed to import from core or any sub-feature, unless they already exist within them.
-A sub-feature is also not allowed to import from another sub-feature.
+source: https://stackoverflow.com/questions/49084853/what-is-the-role-of-angular-core-module
+
+## Structure within
 
 Within these folders, a flat structure of sub-folders exist, grouped by types.
 - component
+  - atom
+  - molecule
+  - organism
+- page
 - directive
 - model
 - pipe
@@ -40,3 +45,8 @@ Within these folders, a flat structure of sub-folders exist, grouped by types.
 - service
 - store (for NgRx)
 - util
+
+Using atomic design, the component folder is split into atom, molecule and organism.
+The components themselves don't have any business logic.
+
+Sites or pages have their separate folder, because at that level business logic makes sense.
