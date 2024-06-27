@@ -1,7 +1,11 @@
 <div class="todo-list">
   @for (item of items; track item){
     <div class="todo-list__item mat-elevation-z4 mt-3">
-      {{ item.text }}
+      <div>{{ item.text }}</div>
+      <div>
+        <button mat-icon-button><mat-icon>edit</mat-icon></button>
+        <button (click)="onDelete(item)" mat-icon-button><mat-icon>delete</mat-icon></button>
+      </div>
     </div>
   }
 </div>

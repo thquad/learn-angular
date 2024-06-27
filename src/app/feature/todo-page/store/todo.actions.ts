@@ -7,9 +7,12 @@ export const TodoActions = createActionGroup({
   events: {
     'Post Todo': props<{ data: TodoItem }>(),
     'Post Todo Success': props<{ data: TodoItem }>(),
-    'Post Todo Failure': props<{ error: Error }>(),
-    'Delete Todo': props<{ id: string }>(),
+    'Post Todo Error': props<{ error: Error }>(),
+    'Put Todo': props<{ data: TodoItem }>(),
+    'Put Todo Success': props<{ data: TodoItem }>(),
+    'Put Todo Error': props<{ error: Error }>(),
+    'Delete Todo': props<{ data: TodoItem }>(),
     'Delete Todo Success': props<{ data: TodoItem }>(),
-    'Delete Todo Failure': props<{ error: Error }>(),
+    'Delete Todo Error': props<{ error: Error }>(),
   }
 });

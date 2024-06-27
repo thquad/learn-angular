@@ -1,6 +1,9 @@
 .todo-list {
   &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border: 1px solid #e3e3e3;
-    padding: 20px;
+    padding: 10px 20px;
   }
 }

@@ -5,9 +5,8 @@ import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { TodoActions } from './store/todo.actions';
-import { selectTodoList } from './store/todo.feature';
-import { TodoItem } from '../../shared/model/todo.model';
+import { TodoActions } from '../todo-page/store/todo.actions';
+import { selectTodoList } from '../todo-page/store/todo.feature';
 
 @Component({
   selector: 'app-todo-page',
@@ -31,15 +30,11 @@ export class TodoPageComponent {
     return this.form.get('todoInput') as FormControl<string>;
   }
 
-  onSubmit(): void {
+  onSubmit() {
     this.store.dispatch(TodoActions.postTodo({data:{
       text: `${this.form.controls.todoInput.value}`,
       id: `${new Date().getTime()}`
     }}));
     this.form.controls.todoInput.setValue('');
-  }
-
-  onDelete(todoItem: TodoItem): void {
-    this.store.dispatch(TodoActions.deleteTodo({data: todoItem}));
   }
 }

@@ -8,7 +8,10 @@
     </form>
   </div>
   <div class="row mt-5">
-    <app-todo-list [items]="(todoList$ | async) || []"></app-todo-list>
+    <app-todo-list
+      [items]="(todoList$ | async) || []"
+      (deleteEvent)="onDelete($event)"
+    ></app-todo-list>
   </div>
 </div>
 
