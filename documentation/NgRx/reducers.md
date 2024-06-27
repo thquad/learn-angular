@@ -1,4 +1,4 @@
-[↩ go back](../index.md)
+[↩ index.md](../index.md)
 
 # Reducers
 
