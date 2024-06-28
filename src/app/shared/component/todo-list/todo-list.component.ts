@@ -24,10 +24,10 @@ import { CommonModule } from '@angular/common';
         style({opacity:1})
       ),
       transition('void => enter',[
-        animate('0.8s cubic-bezier(0,.4,0,1)')
+        animate('1.5s cubic-bezier(.25,.5,0,1)')
       ]),
       transition('leave => void',[
-        animate('0.6s cubic-bezier(0,.4,0,1)')
+        animate('0.4s cubic-bezier(0,.5,0,1)')
       ])
     ])
   ]
@@ -42,6 +42,13 @@ export class TodoListComponent {
 
   // for animations
   animate(todoItem: TodoItem){
+    /**
+     * Since the whole item list is refreshed, all items in the list
+     * will be animated with any changes, since the whole list is
+     * rendered again.
+     * Storing the id of already viewed items prevents animations
+     * from repeated playing.
+     */
     let state = '';
 
     if(!this.toEnter.some(item => item.id === todoItem.id)){

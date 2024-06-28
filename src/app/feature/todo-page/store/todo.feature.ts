@@ -4,14 +4,11 @@ import { ActionState, ActionStateCreator } from "../../../shared/util/action-sta
 import { TodoItem } from "../../../shared/model/todo.model"
 
 const prefillItems: TodoItem[] = [
-  {
-    id: '0',
-    text: 'take out trash'
-  },
-  {
-    id: '1',
-    text: 'smile'
-  },
+  { id: '00', text: 'take out trash' },
+  { id: '01', text: 'feed cat' },
+  { id: '02', text: 'pay debt' },
+  { id: '03', text: 'run for president' },
+  { id: '04', text: 'order food' },
 ]
 
 export interface TodoState {
@@ -85,7 +82,7 @@ export const todoFeature = createFeature({
   ),
 
   // ===== EXTRA SELECTORS =====
-  
+
   extraSelectors: ({selectTodoList}) => {
     const selectSortedTodoList = createSelector(
       selectTodoList,
