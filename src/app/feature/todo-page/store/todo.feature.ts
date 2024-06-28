@@ -30,7 +30,8 @@ export const todoFeature = createFeature({
   reducer: createReducer(
     initialState,
 
-    // POST
+    // ===== POST =====
+
     on(TodoActions.postTodo, (state) => ({
       ...state,
       todoListActionState: ActionStateCreator.onStart()
@@ -45,7 +46,8 @@ export const todoFeature = createFeature({
       todoListActionState: ActionStateCreator.onError(action.error)
     })),
 
-    // PUT
+    // ===== PUT =====
+
     on(TodoActions.putTodo, (state) => ({
       ...state,
       todoListActionState: ActionStateCreator.onStart()
@@ -65,7 +67,8 @@ export const todoFeature = createFeature({
       todoListActionState: ActionStateCreator.onError(action.error)
     })),
 
-    // DELETE
+    // ===== DELETE =====
+
     on(TodoActions.deleteTodo, (state) => ({
       ...state,
       todoListActionState: ActionStateCreator.onStart()
@@ -80,6 +83,9 @@ export const todoFeature = createFeature({
       todoListActionState: ActionStateCreator.onError(action.error)
     })),
   ),
+
+  // ===== EXTRA SELECTORS =====
+  
   extraSelectors: ({selectTodoList}) => {
     const selectSortedTodoList = createSelector(
       selectTodoList,
