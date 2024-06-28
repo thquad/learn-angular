@@ -13,10 +13,15 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
+
+    // ===== STORE =====
+
     provideStore(),
     provideState(todoFeature),
     provideEffects(TodoEffects),
-        /**
+    provideStoreDevtools(),
+
+    /**
      * Registering states with provideStore ensures that the
      * states are defined upon application startup. In general, you
      * register root states that always need to be available to all
@@ -29,6 +34,5 @@ export const appConfig: ApplicationConfig = {
      * It is recommended to use provideState to register feature states
      * instead of provideStore, but the reason why is not explained.
      */
-    provideStoreDevtools(),
   ]
 };

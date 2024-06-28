@@ -1,4 +1,4 @@
-\> [index.md](../index.md) > actions.md
+[index.md](../index.md) > actions.md
 
 ## Actions
 

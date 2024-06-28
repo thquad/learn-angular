@@ -1,4 +1,4 @@
-\> [index.md](../index.md) > store-service.md
+[index.md](../index.md) > store-service.md
 
 ## Store Service
 

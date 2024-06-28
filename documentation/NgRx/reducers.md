@@ -1,4 +1,4 @@
-\> [index.md](../index.md) > reducers.md
+[index.md](../index.md) > reducers.md
 
 # Reducers
 
