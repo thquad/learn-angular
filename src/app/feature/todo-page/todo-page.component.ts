@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TodoActions } from './store/todo.actions';
-import { selectSortedTodoList, selectTodoList } from './store/todo.feature';
+import { selectSortedTodoList } from './store/todo.feature';
 import { TodoItem } from '../../shared/model/todo.model';
 
 @Component({
