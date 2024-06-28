@@ -1,4 +1,4 @@
-[↩ index.md](../index.md)
+> [index.md](../index.md) > project-structure.md
 
 # Project Structure
 
