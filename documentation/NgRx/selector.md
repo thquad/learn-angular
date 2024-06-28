@@ -1,4 +1,4 @@
-> [index.md](../index.md) > selector.md
+\> [index.md](../index.md) > selector.md
 
 # Selector
 
