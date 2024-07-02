@@ -4,12 +4,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
+import { MatCard } from '@angular/material/card';
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatIconModule, MatIconButton, CommonModule],
+  imports: [MatIconModule, MatIconButton, CommonModule, MatCard],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.scss',
   animations: [
@@ -24,7 +25,7 @@ import { CommonModule } from '@angular/common';
         style({opacity:1})
       ),
       transition('void => enter',[
-        animate('1.5s cubic-bezier(.25,.5,0,1)')
+        animate('0.8s cubic-bezier(.25,.5,0,1)')
       ]),
       transition('leave => void',[
         animate('0.4s cubic-bezier(0,.5,0,1)')

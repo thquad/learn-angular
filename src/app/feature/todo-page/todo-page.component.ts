@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { TodoActions } from './store/todo.actions';
 import { selectSortedTodoList } from './store/todo.feature';
 import { TodoItem } from '../../shared/model/todo.model';
+import { MatButton } from '@angular/material/button';
+import { MatCard } from '@angular/material/card';
 
 @Component({
   selector: 'app-todo-page',
@@ -15,7 +17,7 @@ import { TodoItem } from '../../shared/model/todo.model';
   styleUrl: './todo-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MatInputModule, MatLabel, ReactiveFormsModule, TodoListComponent, AsyncPipe],
+  imports: [MatInputModule, MatLabel, ReactiveFormsModule, TodoListComponent, AsyncPipe, MatCard, MatButton],
 })
 export class TodoPageComponent {
   fb = inject(FormBuilder);
@@ -32,14 +34,16 @@ export class TodoPageComponent {
   }
 
   onSubmit(): void {
-    this.store.dispatch(TodoActions.postTodo({data:{
-      text: `${this.form.controls.todoInput.value}`,
-      id: `${new Date().getTime()}`
-    }}));
+    this.store.dispatch(TodoActions.postTodo({
+      data: {
+        text: `${this.form.controls.todoInput.value}`,
+        id: `${new Date().getTime()}`
+      }
+    }));
     this.form.controls.todoInput.setValue('');
   }
 
   onDelete(todoItem: TodoItem): void {
-    this.store.dispatch(TodoActions.deleteTodo({data: todoItem}));
+    this.store.dispatch(TodoActions.deleteTodo({ data: todoItem }));
   }
 }

@@ -1,17 +1,18 @@
-<div class="container">
-  <div class="row pt-5">
+<div class="todo-page">
+  <div class="row">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-form-field class="todo-page__input-field">
-        <mat-label>Todo</mat-label>
+        <mat-label>add new todo</mat-label>
         <input type="text" matInput [formControl]="todoInput">
       </mat-form-field>
     </form>
   </div>
-  <div class="row mt-5">
+  <div class="row">
     <app-todo-list
       [items]="(todoList$ | async) || []"
       (deleteEvent)="onDelete($event)"
     ></app-todo-list>
   </div>
+  <button color="primary" class="mt-5" mat-raised-button>hihjo</button>
 </div>
 
