@@ -6,3 +6,4 @@
 
 This setup guide is for Angular versions with standalone components.
 
+#todo

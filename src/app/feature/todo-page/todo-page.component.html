@@ -1,4 +1,7 @@
 <div class="todo-page">
+  <div class="row mb-3">
+    <h1 class="todo-page__h1 mat-h1">Basic NgRx Todo App</h1>
+  </div>
   <div class="row">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-form-field class="todo-page__input-field">
@@ -13,6 +16,6 @@
       (deleteEvent)="onDelete($event)"
     ></app-todo-list>
   </div>
-  <button color="primary" class="mt-5" mat-raised-button>hihjo</button>
+  <button color="primary" class="mt-5" mat-raised-button (click)="onReset()">Reset</button>
 </div>
 

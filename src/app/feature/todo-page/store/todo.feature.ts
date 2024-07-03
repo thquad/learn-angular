@@ -3,13 +3,15 @@ import { TodoActions } from "./todo.actions"
 import { ActionState, ActionStateCreator } from "../../../shared/util/action-state"
 import { TodoItem } from "../../../shared/model/todo.model"
 
-const prefillItems: TodoItem[] = [
-  { id: '00', text: 'take out trash' },
-  { id: '01', text: 'feed cat' },
-  { id: '02', text: 'pay debt' },
-  { id: '03', text: 'run for president' },
-  { id: '04', text: 'order food' },
-]
+function createPrefillItems(): TodoItem[] {
+  return [
+    { id: `${new Date().getTime()}1`, text: 'take out trash' },
+    { id: `${new Date().getTime()}2`, text: 'feed cat' },
+    { id: `${new Date().getTime()}3`, text: 'pay debt' },
+    { id: `${new Date().getTime()}4`, text: 'run for president' },
+    { id: `${new Date().getTime()}5`, text: 'order food' },
+  ];
+}
 
 export interface TodoState {
   todoList: TodoItem[]
@@ -17,7 +19,7 @@ export interface TodoState {
 }
 
 export const initialState: TodoState = {
-  todoList: prefillItems,
+  todoList: createPrefillItems(),
   todoListActionState: ActionStateCreator.create()
 };
 
@@ -79,6 +81,14 @@ export const todoFeature = createFeature({
       ...state,
       todoListActionState: ActionStateCreator.onError(action.error)
     })),
+
+      // ===== OTHER =====
+
+    on(TodoActions.resetList, (state) => ({
+      ...state,
+      todoList: createPrefillItems()
+    })),
+
   ),
 
   // ===== EXTRA SELECTORS =====
@@ -87,7 +97,7 @@ export const todoFeature = createFeature({
     const selectSortedTodoList = createSelector(
       selectTodoList,
       (todoList) => [...todoList].sort((a,b) => -a.id.localeCompare(b.id))
-    )
+    );
 
     return { selectSortedTodoList };
   }

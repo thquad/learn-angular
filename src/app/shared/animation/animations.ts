@@ -1,5 +1,6 @@
 import { animate, animation, keyframes, style, transition, trigger, useAnimation } from "@angular/animations"
 
+// animation() allows for more configuration than animate()
 export const enterAnimation = animation(
   animate('0.8s cubic-bezier(.25,.5,0,1)', keyframes([
     style({

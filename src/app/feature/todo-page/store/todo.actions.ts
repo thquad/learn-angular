@@ -1,4 +1,4 @@
-import { createActionGroup, props } from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { TodoItem } from '../../../shared/model/todo.model';
 
 // createActionGroup() since NgRx v14
@@ -14,5 +14,6 @@ export const TodoActions = createActionGroup({
     'Delete Todo': props<{ data: TodoItem }>(),
     'Delete Todo Success': props<{ data: TodoItem }>(),
     'Delete Todo Error': props<{ error: Error }>(),
+    'Reset List': emptyProps(),
   }
 });

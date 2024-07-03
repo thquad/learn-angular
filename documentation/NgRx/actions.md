@@ -8,12 +8,12 @@ If you are familiar with CQRS (Command and Query Responsibility Segregation), Ac
 
 ## Datastructure of Actions
 
-It's important to understand, that actions have a very simple datastructure:
+All actions are basically just simple javascript objects:
 
 ```typescript
 interface Action {
   type: string;
-  [key: string]: any; // not included in the official specification, but added here to show that additional properties can be added to an action
+  [key: string]: any;
 }
 ```
 
@@ -22,32 +22,32 @@ This datastructure can be obscured by the various creators added to the Angular 
 ## Action Creators
 
 ```typescript
-// Since NgRx v8+
+// Since NgRx v7
 export const TodoActions = {
   postTodo: createAction(
     '[Todo] Post Todo',
     props<{data: TodoItem}>()
-  )
+  ),
+  // ...
 };
-```
-```typescript
+
+// is the same as
+
 // Since NgRx v14
 export const TodoActions = createActionGroup({
   source: 'Todo',
   events: {
-    'Post Todo': props<{ data: TodoItem }>()
+    'Post Todo': props<{ data: TodoItem }>(),
+    // ...
   }
 });
 ```
 
-Both implementation above return the same result. 
+Both implementation above return the same result!
 
 ```typescript
 TodoActions.postTodo({data:{text:"example"}})
 ```
-
-returns
-
 ```json
 {
   "type": "[Todo] Post Todo",
@@ -55,4 +55,21 @@ returns
     "text": "example"
   }
 }
+```
+
+---
+
+You then use the store service to dispatch an action:
+
+```typescript
+this.store.dispatch(TodoActions.postTodo({
+  data: todoItem
+}));
+
+// is the same as
+
+this.store.dispatch({
+  type: "[Todo] Post Todo",
+  data: todoItem
+});
 ```

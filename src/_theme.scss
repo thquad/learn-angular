@@ -14,11 +14,18 @@ $app-theme: mat.define-light-theme((
    accent: $app-accent,
    warn: $app-warn,
  ),
- typography: mat.define-typography-config(),
+  typography:  mat.define-typography-config(),
  density: 0,
 ));
 
 @include mat.all-component-themes($app-theme);
 
+// export colors as scss variables for custom use
 $primary: mat.get-color-from-palette($app-primary);
-$accent: mat.get-color-from-palette($app-accent, 100);
+$accent: mat.get-color-from-palette($app-accent, 200);
+$accent-light: mat.get-color-from-palette($app-accent, 100);
+$accent-dark: mat.get-color-from-palette($app-accent, 400);
+
+$typography-handwriting: mat.define-typography-config(
+  $font-family: "Playwrite PL, serif",
+);

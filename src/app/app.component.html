@@ -1,5 +1,16 @@
 <div class="app">
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
+  <mat-toolbar class="app__header" color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Learn Angular</span>
+  </mat-toolbar>
+  <mat-sidenav-container class="app__sidenav-container">
+    <mat-sidenav #sidenav>Start</mat-sidenav>
+    <mat-sidenav-content class="app__sidenav-content">
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

@@ -19,11 +19,11 @@ export class TodoListComponent {
   @Input() items!: TodoItem[];
   @Output() deleteEvent = new EventEmitter<TodoItem>();
 
-  // for animations
+  // for animation states
   private toEnter: TodoItem[] = [];
   private toLeave: TodoItem[] = [];
 
-  // for animations
+  // for animation states
   animate(todoItem: TodoItem){
     /**
      * Since the whole item list is refreshed, all items in the list

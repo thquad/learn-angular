@@ -34,16 +34,23 @@ export class TodoPageComponent {
   }
 
   onSubmit(): void {
+    let todoItem: TodoItem = {
+      text: `${this.form.controls.todoInput.value}`,
+      id: `${new Date().getTime()}`
+    };
+
     this.store.dispatch(TodoActions.postTodo({
-      data: {
-        text: `${this.form.controls.todoInput.value}`,
-        id: `${new Date().getTime()}`
-      }
+      data: todoItem
     }));
+
     this.form.controls.todoInput.setValue('');
   }
 
   onDelete(todoItem: TodoItem): void {
     this.store.dispatch(TodoActions.deleteTodo({ data: todoItem }));
+  }
+
+  onReset(): void {
+    this.store.dispatch(TodoActions.resetList());
   }
 }
