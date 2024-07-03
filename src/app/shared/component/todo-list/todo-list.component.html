@@ -1,6 +1,6 @@
 <div class="todo-list">
   @for (item of items; track item){
-    <mat-card [@itemAnimation]="animate(item)" class="todo-list__item mat-elevation-z4 mt-3">
+    <mat-card [@slideEnterLeave]="animate(item)" class="todo-list__item mat-elevation-z4 mt-3">
       <div>{{ item.text }}</div>
       <div>
         <button mat-icon-button><mat-icon>edit</mat-icon></button>

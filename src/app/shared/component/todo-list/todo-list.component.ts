@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { TodoItem } from '../../model/todo.model';
 import { MatIconModule } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { MatCard } from '@angular/material/card';
+import { slideEnterLeaveTrigger } from '../../animation/animations';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,25 +13,7 @@ import { MatCard } from '@angular/material/card';
   imports: [MatIconModule, MatIconButton, CommonModule, MatCard],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.scss',
-  animations: [
-    trigger('itemAnimation', [
-      state('void', 
-        style({
-          transform: 'translate3d(5%, 0, 0)',
-          opacity: 0
-        })
-      ),
-      state('enter', 
-        style({opacity:1})
-      ),
-      transition('void => enter',[
-        animate('0.8s cubic-bezier(.25,.5,0,1)')
-      ]),
-      transition('leave => void',[
-        animate('0.4s cubic-bezier(0,.5,0,1)')
-      ])
-    ])
-  ]
+  animations: [slideEnterLeaveTrigger]
 })
 export class TodoListComponent {
   @Input() items!: TodoItem[];
