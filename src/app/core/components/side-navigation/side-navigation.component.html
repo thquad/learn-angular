@@ -1,0 +1,12 @@
+<nav class="side-navigation">
+  @for (item of NAVIGATION; track item.name) {
+    <a 
+      mat-button
+      color="primary"
+      class="side-navigation__item"
+      [routerLink]="item.path"
+      (click)="navigationEvent.emit()"
+    >{{ item.name }}</a>
+    <mat-divider></mat-divider>
+  }
+</nav>

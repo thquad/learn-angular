@@ -1,0 +1,21 @@
+<div class="todo-widget">
+  <div class="row mb-3">
+    <h1 class="todo-widget__h1 mat-h1">{{ headline }}</h1>
+  </div>
+  <div class="row">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="todo-widget__input-field">
+        <mat-label>add new todo</mat-label>
+        <input type="text" matInput [formControl]="todoInput">
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="row">
+    <app-todo-list
+      [items]="todoList || []"
+      (deleteEvent)="onDelete($event)"
+    ></app-todo-list>
+  </div>
+  <button color="primary" class="mt-5" mat-raised-button (click)="onReset()">Reset</button>
+</div>
+

@@ -1,0 +1,12 @@
+@use '../../../../theme';
+
+.side-navigation {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-top: 10px;
+
+  &__item {
+    justify-content: left;
+  }
+}

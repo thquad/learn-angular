@@ -1,0 +1,20 @@
+@use "@angular/material" as mat;
+@use "../../../../theme";
+
+.todo-widget {
+  border-radius: 0.5rem;
+  padding: 20px;
+  margin-top: 20px;
+
+  background-color: theme.$accent;
+
+  &__input-field {
+    width: 100%;
+  }
+
+  &__h1 {
+    color: white;
+  }
+}
+
+@include mat.typography-hierarchy(theme.$typography-handwriting);
