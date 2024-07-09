@@ -8,6 +8,8 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { todoFeature } from './feature/todo-page/store/todo.feature';
 import { provideEffects } from '@ngrx/effects';
 import { TodoEffects } from './feature/todo-page/store/todo.effects';
+import { todoEntityFeature } from './feature/todo-entity-page/store/todo-entity.feature';
+import { TodoEntityEffects } from './feature/todo-entity-page/store/todo-entity.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,6 +21,8 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideState(todoFeature),
     provideEffects(TodoEffects),
+    provideState(todoEntityFeature),
+    provideEffects(TodoEntityEffects),
     provideStoreDevtools(),
 
     /**

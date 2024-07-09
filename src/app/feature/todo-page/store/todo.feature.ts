@@ -1,17 +1,8 @@
-import { createFeature, createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store"
+import { createFeature, createReducer, createSelector, on } from "@ngrx/store"
 import { TodoActions } from "./todo.actions"
 import { ActionState, ActionStateCreator } from "../../../shared/util/action-state"
 import { TodoItem } from "../../../shared/model/todo.model"
-
-function createPrefillItems(): TodoItem[] {
-  return [
-    { id: `${new Date().getTime()}1`, text: 'take out trash' },
-    { id: `${new Date().getTime()}2`, text: 'feed cat' },
-    { id: `${new Date().getTime()}3`, text: 'pay debt' },
-    { id: `${new Date().getTime()}4`, text: 'run for president' },
-    { id: `${new Date().getTime()}5`, text: 'order food' },
-  ];
-}
+import { createTodoPrefillItems } from "../../../shared/util/store-util"
 
 export interface TodoState {
   todoList: TodoItem[]
@@ -19,7 +10,7 @@ export interface TodoState {
 }
 
 export const initialState: TodoState = {
-  todoList: createPrefillItems(),
+  todoList: createTodoPrefillItems(),
   todoListActionState: ActionStateCreator.create()
 };
 
@@ -35,12 +26,12 @@ export const todoFeature = createFeature({
       ...state,
       todoListActionState: ActionStateCreator.onStart()
     })),
-    on(TodoActions.postTodoSuccess, (state,action) => ({
+    on(TodoActions.postTodoSuccess, (state, action) => ({
       ...state,
-      todoList: [...state.todoList.map(item => Object.assign({},item)), action.data],
+      todoList: [...state.todoList.map(item => Object.assign({}, item)), action.data],
       todoListActionState: ActionStateCreator.onSuccess()
     })),
-    on(TodoActions.postTodoError, (state,action) => ({
+    on(TodoActions.postTodoError, (state, action) => ({
       ...state,
       todoListActionState: ActionStateCreator.onError(action.error)
     })),
@@ -51,17 +42,17 @@ export const todoFeature = createFeature({
       ...state,
       todoListActionState: ActionStateCreator.onStart()
     })),
-    on(TodoActions.putTodoSuccess, (state,action) => ({
+    on(TodoActions.putTodoSuccess, (state, action) => ({
       ...state,
-      todoList: [...state.todoList.map(item => Object.assign({},item))].map(item => {
-        if(item.id === action.data.id){
+      todoList: [...state.todoList.map(item => Object.assign({}, item))].map(item => {
+        if (item.id === action.data.id) {
           return action.data;
         }
         return item;
       }),
       todoListActionState: ActionStateCreator.onSuccess()
     })),
-    on(TodoActions.putTodoError, (state,action) => ({
+    on(TodoActions.putTodoError, (state, action) => ({
       ...state,
       todoListActionState: ActionStateCreator.onError(action.error)
     })),
@@ -72,31 +63,31 @@ export const todoFeature = createFeature({
       ...state,
       todoListActionState: ActionStateCreator.onStart()
     })),
-    on(TodoActions.deleteTodoSuccess, (state,action) => ({
+    on(TodoActions.deleteTodoSuccess, (state, action) => ({
       ...state,
       todoList: [...state.todoList].filter(item => item.id !== action.data.id),
       todoListActionState: ActionStateCreator.onSuccess()
     })),
-    on(TodoActions.deleteTodoError, (state,action) => ({
+    on(TodoActions.deleteTodoError, (state, action) => ({
       ...state,
       todoListActionState: ActionStateCreator.onError(action.error)
     })),
 
-      // ===== OTHER =====
+    // ===== OTHER =====
 
     on(TodoActions.resetList, (state) => ({
       ...state,
-      todoList: createPrefillItems()
+      todoList: createTodoPrefillItems()
     })),
 
   ),
 
   // ===== EXTRA SELECTORS =====
 
-  extraSelectors: ({selectTodoList}) => {
+  extraSelectors: ({ selectTodoList }) => {
     const selectSortedTodoList = createSelector(
       selectTodoList,
-      (todoList) => [...todoList].sort((a,b) => -a.id.localeCompare(b.id))
+      (todoList) => [...todoList].sort((a, b) => -a.id.localeCompare(b.id))
     );
 
     return { selectSortedTodoList };
