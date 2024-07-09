@@ -27,7 +27,7 @@ export class TodoEffects {
         return of(
             TodoActions.putTodoSuccess({data: action.data})
           ).pipe(
-            delay(Math.floor(Math.random()*1000)) //simulate backend
+            delay(Math.floor(Math.random()*3000)) //simulate backend
           );
       })
     )

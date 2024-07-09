@@ -1,4 +1,10 @@
 .todo-list {
+  &__item-description {
+    display: flex;
+    column-gap: 16px;
+    align-items: center;
+  }
+
   &__item {
     display: flex;
     flex-direction: row;

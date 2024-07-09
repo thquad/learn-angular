@@ -3,16 +3,20 @@
     <h1 class="todo-widget__h1 mat-h1">{{ headline }}</h1>
   </div>
   <div class="row">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <mat-form-field class="todo-widget__input-field">
-        <mat-label>add new todo</mat-label>
-        <input type="text" matInput [formControl]="todoInput">
-      </mat-form-field>
-    </form>
+    <mat-form-field class="todo-widget__input-field">
+      <mat-label>add new todo</mat-label>
+      <input
+        type="text"
+        matInput
+        [formControl]="todoInput"
+        (keyup.enter)="onSubmit()"
+      >
+    </mat-form-field>
   </div>
   <div class="row">
     <app-todo-list
       [items]="todoList || []"
+      (editEvent)="onEdit($event)"
       (deleteEvent)="onDelete($event)"
     ></app-todo-list>
   </div>

@@ -25,6 +25,10 @@ export class TodoPageComponent {
     }));
   }
 
+  onEdit(todoItem: TodoItem): void {
+    this.store.dispatch(TodoActions.putTodo({ data: todoItem }));
+  }
+
   onDelete(todoItem: TodoItem): void {
     this.store.dispatch(TodoActions.deleteTodo({ data: todoItem }));
   }

@@ -2,6 +2,7 @@
   headline="Basic NgRx Todo App"
   [todoList]="(todoList$ | async) || []"
   (submitEvent)="onSubmit($event)"
+  (editEvent)="onEdit($event)"
   (deleteEvent)="onDelete($event)"
   (resetEvent)="onReset()"
 ></app-todo-widget>

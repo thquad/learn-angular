@@ -1,9 +1,31 @@
 <div class="todo-list">
   @for (item of items; track item){
     <mat-card [@slideEnterLeave]="animate(item)" class="todo-list__item mat-elevation-z4 mt-3">
-      <div>{{ item.text }}</div>
+      @if (isEditMode(item)){
+        <mat-form-field
+          class="todo-list__input-field"
+          appearance="outline"
+          subscriptSizing="dynamic"
+          >
+          <mat-label>change todo</mat-label>
+          <input
+            #editInput
+            type="text"
+            matInput
+            [value]="item.text"
+            (keyup.enter)="onEdit(editInput.value, item)"
+          >
+        </mat-form-field>
+      } @else {
+        <div class="todo-list__item-description">
+          @if (isLoading(item)) {
+            <mat-spinner diameter="26"></mat-spinner>
+          }
+          <div>{{ item.text }}</div>
+        </div>
+      }
       <div>
-        <button mat-icon-button><mat-icon>edit</mat-icon></button>
+        <button (click)="onEditToggle(item)" mat-icon-button><mat-icon>edit</mat-icon></button>
         <button (click)="onDelete(item)" mat-icon-button><mat-icon>delete</mat-icon></button>
       </div>
     </mat-card>

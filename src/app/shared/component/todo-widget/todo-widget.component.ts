@@ -22,27 +22,25 @@ export class TodowidgetComponent {
   @Input() headline!: string;
   @Input() todoList!: TodoItem[];
   @Output() submitEvent = new EventEmitter<TodoItem>();
+  @Output() editEvent = new EventEmitter<TodoItem>();
   @Output() deleteEvent = new EventEmitter<TodoItem>();
   @Output() resetEvent = new EventEmitter();
 
-
-  form = this.fb.group({
-    todoInput: this.fb.control('')
-  })
-
-  get todoInput() {
-    return this.form.get('todoInput') as FormControl<string>;
-  }
+  todoInput = this.fb.control('');
 
   onSubmit(): void {
     let todoItem: TodoItem = {
-      text: `${this.form.controls.todoInput.value}`,
+      text: `${this.todoInput.value}`,
       id: `${new Date().getTime()}`
     };
 
     this.submitEvent.emit(todoItem);
 
-    this.form.controls.todoInput.setValue('');
+    this.todoInput.setValue('');
+  }
+
+  onEdit(todoItem: TodoItem): void {
+    this.editEvent.emit(todoItem);
   }
 
   onDelete(todoItem: TodoItem): void {
