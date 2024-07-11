@@ -1,0 +1,40 @@
+<h1>Template-driven forms</h1>
+<section>
+  <div class="d-flex flex-column row-gap-3">
+    <p>
+      Template-driven forms are easy to use for small forms
+      and require no code in the typescript file. <br />
+      That's why they are called "template-driven".
+    </p>
+    <form>
+      <mat-form-field>
+        <mat-label>Template driven text</mat-label>
+        <input
+          matInput
+          ngModel
+          #templateDrivenText
+          type="text"
+          name="templateDrivenText">
+      </mat-form-field>
+      <div class="mb-3">Your input is: {{ templateDrivenText.value }}</div>
+    </form>
+    <p>
+      Even though template-driven forms don't require binding
+      to the typescript code, it still might make sense to do so.
+      In this case, use two-way binding via <span>[( )]</span>.
+    </p>
+    <form>
+      <mat-form-field>
+        <mat-label>Template driven number</mat-label>
+        <input
+          matInput
+          [(ngModel)]="templateDrivenNumber"
+          type="number"
+          name="templateDrivenNumber">
+      </mat-form-field>
+      <div class="mb-3">Your input is: {{ templateDrivenNumber }}</div>
+    </form>
+  </div>
+</section>
+<h1>Reactive forms</h1>
+<section></section>

@@ -5,6 +5,10 @@
     align-items: center;
   }
 
+  &__input-field {
+    width:50%;
+  }
+
   &__item {
     display: flex;
     flex-direction: row;

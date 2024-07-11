@@ -6,7 +6,8 @@ type Navigation = {
 export enum PATH {
   TODO_LIST = 'todo-list',
   TODO_LIST_BASIC = 'todo-list/basic',
-  TODO_LIST_ENTITY = 'todo-list/entity'
+  TODO_LIST_ENTITY = 'todo-list/entity',
+  FORMS = 'forms'
 }
 
 export const NAVIGATION: Navigation[] = [
@@ -17,5 +18,9 @@ export const NAVIGATION: Navigation[] = [
   {
     name: 'Entitiy NgRx',
     path: PATH.TODO_LIST_ENTITY
+  },
+  {
+    name: 'Forms',
+    path: PATH.FORMS
   },
 ]
