@@ -17,7 +17,7 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
   imports: [MatInputModule, MatLabel, ReactiveFormsModule, TodoListComponent, AsyncPipe, MatCard, MatButton],
 })
 export class TodowidgetComponent {
-  fb = inject(FormBuilder);
+  private fb = inject(FormBuilder);
 
   @Input() headline!: string;
   @Input() todoList!: TodoItem[];
@@ -26,7 +26,7 @@ export class TodowidgetComponent {
   @Output() deleteEvent = new EventEmitter<TodoItem>();
   @Output() resetEvent = new EventEmitter();
 
-  todoInput = this.fb.control('');
+  public todoInput = this.fb.control('');
 
   onSubmit(): void {
     let todoItem: TodoItem = {

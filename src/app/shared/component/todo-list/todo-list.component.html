@@ -9,11 +9,11 @@
           >
           <mat-label>change todo</mat-label>
           <input
-            #editInput
-            type="text"
             matInput
+            ngModel
+            #editInput
             [value]="item.text"
-            (keyup.enter)="onEdit(editInput.value, item)"
+            (change)="onEdit(editInput.value, item)"
           >
         </mat-form-field>
       } @else {

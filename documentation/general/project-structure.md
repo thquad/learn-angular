@@ -49,6 +49,6 @@ Within these folders, a flat structure of sub-folders exist, grouped by types.
 - util
 
 Using atomic design, the component folder is split into atom, molecule and organism.
-The components themselves don't have any business logic, they are the view in the MVP architecture pattern.
+The components themselves don't contain any business logic, they are the view in the MVP architecture pattern.
 
 Sites or pages have their separate folder, because at that level business logic makes sense.
