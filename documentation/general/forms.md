@@ -46,4 +46,4 @@ https://angular.dev/guide/forms/reactive-forms
 A reactive form is a form defined in typescript and then accessed by the form elements in the template.
 
 I think reactive forms always make sense if the page requires an actual form to be filled out.
-For individual or small amount of input fields, a template driven form should suffice.
+For individual or small amount of input fields, a template driven form should suffice, like in [todo-list component](../../src/app/shared/component/todo-list/todo-list.component.html).
