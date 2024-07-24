@@ -4,7 +4,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { SideNavigationComponent } from './core/components/side-navigation/side-navigation.component';
+import { SideNavigationComponent } from '@core/components/side-navigation/side-navigation.component';
 
 @Component({
   selector: 'app-root',

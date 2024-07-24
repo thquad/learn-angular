@@ -1,15 +1,15 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './core/app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { todoFeature } from './feature/todo-page/store/todo.feature';
 import { provideEffects } from '@ngrx/effects';
-import { TodoEffects } from './feature/todo-page/store/todo.effects';
-import { todoEntityFeature } from './feature/todo-entity-page/store/todo-entity.feature';
-import { TodoEntityEffects } from './feature/todo-entity-page/store/todo-entity.effects';
+import { routes } from '@core/app.routes';
+import { todoFeature } from '@feature/todo-page/store/todo.feature';
+import { TodoEffects } from '@feature/todo-page/store/todo.effects';
+import { todoEntityFeature } from '@feature/todo-entity-page/store/todo-entity.feature';
+import { TodoEntityEffects } from '@feature/todo-entity-page/store/todo-entity.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [

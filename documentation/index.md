@@ -2,6 +2,7 @@ Documentation:
 - General
   - [Project Structure](./general/project-structure.md)
   - [Forms](./general/forms.md)
+  - [Project Configuration with tsconfig](./general/tsconfig.md)
 - Components and styling
   - [Angular Material](./angular-material/angular-material.md)
 - NgRx (Angular Redux / Store)

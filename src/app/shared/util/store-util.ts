@@ -1,5 +1,4 @@
-import { Dictionary } from "@ngrx/entity";
-import { TodoItem } from "../model/todo.model";
+import { TodoItem } from "@shared/model/todo.model";
 
 export function createTodoPrefillItems(): TodoItem[] {
   return [

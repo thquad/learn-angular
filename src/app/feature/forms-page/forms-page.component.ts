@@ -1,8 +1,9 @@
 import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ErrorMessagePipe } from '@shared/pipe/error-message.pipe';
 
 @Component({
   selector: 'app-forms-page',
@@ -13,7 +14,8 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    JsonPipe
+    JsonPipe,
+    ErrorMessagePipe
   ],
   templateUrl: './forms-page.component.html',
   styleUrl: './forms-page.component.scss'
@@ -26,8 +28,15 @@ export class FormsPageComponent {
 
   // reactive form
   public form = this.fb.group({
-    text: this.fb.control(''),
-    number: this.fb.control(1)
+    text: this.fb.control('', [
+      Validators.required,
+      Validators.minLength(3)
+    ]),
+    number: this.fb.control(1, [
+      Validators.required,
+      Validators.min(0),
+      Validators.max(10),
+    ])
   })
 
   // #todo do more with reactive forms

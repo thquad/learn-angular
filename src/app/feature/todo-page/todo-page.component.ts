@@ -3,8 +3,8 @@ import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { TodoActions } from './store/todo.actions';
 import { selectSortedTodoList } from './store/todo.feature';
-import { TodoItem } from '../../shared/model/todo.model';
-import { TodowidgetComponent } from '../../shared/component/todo-widget/todo-widget.component';
+import { TodoItem } from '@shared/model/todo.model';
+import { TodowidgetComponent } from '@shared/component/todo-widget/todo-widget.component';
 
 @Component({
   selector: 'app-todo-page',

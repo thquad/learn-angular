@@ -75,6 +75,7 @@
         <input
           matInput
           formControlName="text">
+        <mat-error>{{ form.get('text')?.errors | errorMessage }}</mat-error>
       </mat-form-field>
       <br/>
       <mat-form-field>
@@ -83,6 +84,7 @@
           matInput
           type="number"
           formControlName="number">
+        <mat-error>{{ form.get('number')?.errors | errorMessage }}</mat-error>
       </mat-form-field>
       <div class="mb-3">Your input is: {{ form.value | json }}</div>
     </form>

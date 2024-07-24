@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Store } from '@ngrx/store';
-import { TodoItem } from '../../shared/model/todo.model';
-import { TodowidgetComponent } from '../../shared/component/todo-widget/todo-widget.component';
+import { TodoItem } from '@shared/model/todo.model';
+import { TodowidgetComponent } from '@shared/component/todo-widget/todo-widget.component';
 import { selectAllAsSortedArray } from './store/todo-entity.feature';
 import { TodoEntityActions } from './store/todo-entity.actions';
 

@@ -4,7 +4,6 @@ export interface ActionState {
   error?: Error;
 }
 
-
 export class ActionStateCreator {
   public static create(): ActionState {
     return {
