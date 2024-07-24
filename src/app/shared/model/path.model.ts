@@ -7,7 +7,8 @@ export enum PATH {
   TODO_LIST = 'todo-list',
   TODO_LIST_BASIC = 'todo-list/basic',
   TODO_LIST_ENTITY = 'todo-list/entity',
-  FORMS = 'forms'
+  FORMS = 'forms',
+  SIGNALS = 'signals',
 }
 
 export const NAVIGATION: Navigation[] = [
@@ -23,4 +24,8 @@ export const NAVIGATION: Navigation[] = [
     name: 'Forms',
     path: PATH.FORMS
   },
+  {
+    name: 'Signals',
+    path: PATH.SIGNALS
+  }
 ]

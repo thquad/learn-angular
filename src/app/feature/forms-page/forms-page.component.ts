@@ -34,8 +34,8 @@ export class FormsPageComponent {
     ]),
     number: this.fb.control(1, [
       Validators.required,
-      Validators.min(0),
-      Validators.max(10),
+      Validators.min(1),
+      Validators.max(5),
     ])
   })
 

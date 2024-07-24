@@ -34,3 +34,16 @@ import { ErrorMessagePipe } from '../../shared/pipe/error-message.pipe';
 // with import remapping
 import { ErrorMessagePipe } from '@shared/pipe/error-message.pipe';
 ```
+
+### type roots
+
+```json
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/@angular/material",
+    ],
+```
+
+Usually type definitions are located in `node_modules/@types`, but sometimes additional definitions need to be added manually.
+
+E.g. Angular Material needed to be added in this project, so that code autocomplete for the material package is functional.
