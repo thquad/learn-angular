@@ -28,10 +28,10 @@ export const leaveAnimation = animation(
 );
 
 export const slideEnterLeaveTrigger = trigger('slideEnterLeave', [
-  transition('void => enter', [
+  transition('void => in', [
     useAnimation(enterAnimation)
   ]),
-  transition('leave => void', [
+  transition('out => void', [
     useAnimation(leaveAnimation)
   ])
 ]);

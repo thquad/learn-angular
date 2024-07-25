@@ -1,25 +1,54 @@
 <div class="todo-widget">
-  <div class="row mb-3">
-    <h1 class="todo-widget__h1 mat-h1">{{ headline }}</h1>
+  <div class="todo-widget__card mb-4">
+    <div class="row">
+      <h1 class="todo-widget__h1 mat-h1">{{ headline }}</h1>
+    </div>
+    <div class="row">
+      <mat-form-field class="col-9">
+        <mat-label>add new todo</mat-label>
+        <input
+          type="text"
+          matInput
+          [formControl]="todoInput"
+          (keyup.enter)="onSubmit()"
+        >
+      </mat-form-field>
+      <div class="col-3">
+        <button 
+          color="primary"
+          mat-raised-button
+          class="todo-widget__button"
+          (click)="onSubmit()">
+          CREATE
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <mat-form-field class="todo-widget__input-field">
-      <mat-label>add new todo</mat-label>
-      <input
-        type="text"
-        matInput
-        [formControl]="todoInput"
-        (keyup.enter)="onSubmit()"
-      >
-    </mat-form-field>
-  </div>
-  <div class="row">
-    <app-todo-list
-      [items]="todoList || []"
-      (editEvent)="onEdit($event)"
-      (deleteEvent)="onDelete($event)"
-    ></app-todo-list>
-  </div>
-  <button color="primary" class="mt-5" mat-raised-button (click)="onReset()">Reset</button>
+    <div class="row todo-widget__list">
+      <div class="col-sm-3 todo-widget__side-content">
+        <p>
+          This todo list was done using basic NgRx, animations and angular material.
+        </p>
+        <p>
+          Look into the documentation of the code, if you wan't to learn how.
+        </p>
+        <p>
+          <a 
+            class="todo-widget__link"
+            target="blank"
+            href="https://github.com/thquad/learn-angular/blob/main/documentation/index.md">
+            Documentation
+          </a>
+        </p>
+        <button color="primary" class="mt-2" mat-raised-button (click)="onReset()">Reset</button>
+      </div>
+      <div class="col-sm-9 mb-5">
+        <app-todo-list
+          [items]="todoList || []"
+          (editEvent)="onEdit($event)"
+          (deleteEvent)="onDelete($event)"
+        ></app-todo-list>
+      </div>
+    </div>
 </div>
 

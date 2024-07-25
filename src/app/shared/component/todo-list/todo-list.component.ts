@@ -50,12 +50,12 @@ export class TodoListComponent {
 
     if(!this.toEnter.some(item => item.id === todoItem.id)){
       this.toEnter.push(todoItem);
-      state = 'enter'; 
+      state = 'in'; 
     }
 
     if(this.toLeave.some(item => item.id === todoItem.id)){
       this.toEnter.push(todoItem);
-      state = 'leave'; 
+      state = 'out'; 
     }
 
     return state;

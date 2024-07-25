@@ -15,4 +15,4 @@ Add theme to `angular.json`:
   ],
 ```
 
-See [_theme.scss](../../src/_theme.scss) for how to setup a custom theme.
+See [_theme.scss](../../src/app/shared/style/_theme.scss) for how to setup a custom theme.
