@@ -6,8 +6,8 @@
     <span>Learn Angular</span>
   </mat-toolbar>
   <mat-sidenav-container class="app__sidenav-container">
-    <mat-sidenav #sidenav>
-      <app-side-navigation (navigationEvent)="sidenav.toggle()"></app-side-navigation>
+    <mat-sidenav #sidenav mode="side">
+      <app-side-navigation></app-side-navigation>
     </mat-sidenav>
     <mat-sidenav-content class="app__sidenav-content">
       <div class="container">

@@ -1,4 +1,4 @@
-@use '../../../../theme';
+@use '../../../shared/style/theme';
 
 .side-navigation {
   display: flex;
@@ -8,5 +8,9 @@
 
   &__item {
     justify-content: left;
+    &--active {
+      color: theme.$primary !important;
+      background-color: theme.$accent-light;
+    }
   }
 }

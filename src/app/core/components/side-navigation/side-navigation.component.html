@@ -2,9 +2,9 @@
   @for (item of NAVIGATION; track item.name) {
     <a 
       mat-button
-      color="primary"
       class="side-navigation__item"
       [routerLink]="item.path"
+      [routerLinkActive]="'side-navigation__item--active'"
       (click)="navigationEvent.emit()"
     >{{ item.name }}</a>
     <mat-divider></mat-divider>

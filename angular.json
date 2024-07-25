@@ -36,7 +36,7 @@
               "src/styles.scss",
               "node_modules/bootstrap-icons/font/bootstrap-icons.scss",
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/_theme.scss"
+              "src/app/shared/style/_theme.scss"
             ],
             "scripts": []
           },
