@@ -26,14 +26,14 @@ export const todoFeature = createFeature({
       ...state,
       todoListActionState: ActionStateCreator.onStart()
     })),
-    on(TodoActions.postTodoSuccess, (state, action) => ({
+    on(TodoActions.postTodoSuccess, (state, todo) => ({
       ...state,
-      todoList: [...state.todoList.map(item => Object.assign({}, item)), action.data],
+      todoList: [...state.todoList.map(item => Object.assign({}, item)), todo.data],
       todoListActionState: ActionStateCreator.onSuccess()
     })),
-    on(TodoActions.postTodoError, (state, action) => ({
+    on(TodoActions.postTodoError, (state, error) => ({
       ...state,
-      todoListActionState: ActionStateCreator.onError(action.error)
+      todoListActionState: ActionStateCreator.onError(error.error)
     })),
 
     // ===== PUT =====
@@ -42,19 +42,19 @@ export const todoFeature = createFeature({
       ...state,
       todoListActionState: ActionStateCreator.onStart()
     })),
-    on(TodoActions.putTodoSuccess, (state, action) => ({
+    on(TodoActions.putTodoSuccess, (state, todo) => ({
       ...state,
       todoList: [...state.todoList.map(item => Object.assign({}, item))].map(item => {
-        if (item.id === action.data.id) {
-          return action.data;
+        if (item.id === todo.data.id) {
+          return todo.data;
         }
         return item;
       }),
       todoListActionState: ActionStateCreator.onSuccess()
     })),
-    on(TodoActions.putTodoError, (state, action) => ({
+    on(TodoActions.putTodoError, (state, error) => ({
       ...state,
-      todoListActionState: ActionStateCreator.onError(action.error)
+      todoListActionState: ActionStateCreator.onError(error.error)
     })),
 
     // ===== DELETE =====
@@ -63,14 +63,14 @@ export const todoFeature = createFeature({
       ...state,
       todoListActionState: ActionStateCreator.onStart()
     })),
-    on(TodoActions.deleteTodoSuccess, (state, action) => ({
+    on(TodoActions.deleteTodoSuccess, (state, todo) => ({
       ...state,
-      todoList: [...state.todoList].filter(item => item.id !== action.data.id),
+      todoList: [...state.todoList].filter(item => item.id !== todo.data.id),
       todoListActionState: ActionStateCreator.onSuccess()
     })),
-    on(TodoActions.deleteTodoError, (state, action) => ({
+    on(TodoActions.deleteTodoError, (state, error) => ({
       ...state,
-      todoListActionState: ActionStateCreator.onError(action.error)
+      todoListActionState: ActionStateCreator.onError(error.error)
     })),
 
     // ===== OTHER =====
