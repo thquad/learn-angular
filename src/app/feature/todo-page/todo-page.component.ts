@@ -21,16 +21,16 @@ export class TodoPageComponent {
 
   onSubmit(todoItem: TodoItem): void {
     this.store.dispatch(TodoActions.postTodo({
-      data: todoItem
+      todoItem: todoItem
     }));
   }
 
   onEdit(todoItem: TodoItem): void {
-    this.store.dispatch(TodoActions.putTodo({ data: todoItem }));
+    this.store.dispatch(TodoActions.putTodo({ todoItem: todoItem }));
   }
 
   onDelete(todoItem: TodoItem): void {
-    this.store.dispatch(TodoActions.deleteTodo({ data: todoItem }));
+    this.store.dispatch(TodoActions.deleteTodo({ todoItem: todoItem }));
   }
 
   onReset(): void {

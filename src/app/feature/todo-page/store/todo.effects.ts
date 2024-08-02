@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { TodoActions } from "./todo.actions";
-import { concatMap, delay, map, of, switchMap } from "rxjs";
+import { concatMap, delay, of } from "rxjs";
 
 @Injectable()
 export class TodoEffects {
@@ -12,7 +12,7 @@ export class TodoEffects {
       ofType(TodoActions.postTodo),
       concatMap((action) => {
         return of(
-            TodoActions.postTodoSuccess({data: action.data})
+            TodoActions.postTodoSuccess({todoItem: action.todoItem})
           ).pipe(
             delay(Math.floor(Math.random()*1000)) //simulate backend
           );
@@ -25,7 +25,7 @@ export class TodoEffects {
       ofType(TodoActions.putTodo),
       concatMap((action) => {
         return of(
-            TodoActions.putTodoSuccess({data: action.data})
+            TodoActions.putTodoSuccess({todoItem: action.todoItem})
           ).pipe(
             delay(Math.floor(Math.random()*5000)) //simulate backend
           );
@@ -38,7 +38,7 @@ export class TodoEffects {
       ofType(TodoActions.deleteTodo),
       concatMap((action) => {
         return of(
-            TodoActions.deleteTodoSuccess({data: action.data})
+            TodoActions.deleteTodoSuccess({todoItem: action.todoItem})
           ).pipe(
             delay(Math.floor(Math.random()*1000)) //simulate backend
           );

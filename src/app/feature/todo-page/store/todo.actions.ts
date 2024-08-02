@@ -5,16 +5,16 @@ import { TodoItem } from '@shared/model/todo.model';
 export const TodoActions = createActionGroup({
   source: 'Todo',
   events: {
-    'Post Todo': props<{ data: TodoItem }>(),
-    'Post Todo Success': props<{ data: TodoItem }>(),
+    'Post Todo': props<{ todoItem: TodoItem }>(),
+    'Post Todo Success': props<{ todoItem: TodoItem }>(),
     'Post Todo Error': props<{ error: Error }>(),
 
-    'Put Todo': props<{ data: TodoItem }>(),
-    'Put Todo Success': props<{ data: TodoItem }>(),
+    'Put Todo': props<{ todoItem: TodoItem }>(),
+    'Put Todo Success': props<{ todoItem: TodoItem }>(),
     'Put Todo Error': props<{ error: Error }>(),
 
-    'Delete Todo': props<{ data: TodoItem }>(),
-    'Delete Todo Success': props<{ data: TodoItem }>(),
+    'Delete Todo': props<{ todoItem: TodoItem }>(),
+    'Delete Todo Success': props<{ todoItem: TodoItem }>(),
     'Delete Todo Error': props<{ error: Error }>(),
     
     'Reset List': emptyProps(),
@@ -28,12 +28,12 @@ export const TodoActions = createActionGroup({
 
 export const PostTodo = createAction(
   '[Todo] Post Todo',
-  props<{ data: TodoItem }>()
+  props<{ todoItem: TodoItem }>()
 );
 
 export const PostTodoSuccess = createAction(
   '[Todo] Post Todo Success',
-  props<{ data: TodoItem }>()
+  props<{ todoItem: TodoItem }>()
 );
 
 export const PostTodoError = createAction(
@@ -54,12 +54,12 @@ export const POST_TODO_ERROR = '[Todo] Post Todo Error';
 
 export class PostTodo implements Action {
   readonly type = POST_TODO;
-  constructor(public data: TodoItem) {}
+  constructor(public todoItem: TodoItem) {}
 };
 
 export class PostTodoSuccess implements Action {
   readonly type = POST_TODO_SUCCESS;
-  constructor(public data: TodoItem) {}
+  constructor(public todoItem: TodoItem) {}
 };
 
 export class PostTodoError implements Action {

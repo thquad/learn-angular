@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-import { NAVIGATION } from '../../../shared/model/path.model';
-import { RouterLink, RouterModule } from '@angular/router';
+import { NAVIGATION } from '@shared/model/path.model';
+import { RouterModule } from '@angular/router';
 import { MatDivider } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 

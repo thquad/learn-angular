@@ -1,13 +1,13 @@
 import { createFeature, createReducer, createSelector, on } from "@ngrx/store"
 import { TodoActions } from "./todo.actions"
-import { ActionState, ActionStateCreator } from "../../../shared/util/action-state"
-import { TodoItem } from "../../../shared/model/todo.model"
-import { createTodoPrefillItems } from "../../../shared/util/store-util"
+import { ActionState, ActionStateCreator } from "@shared/util/action-state"
+import { TodoItem } from "@shared/model/todo.model"
+import { createTodoPrefillItems } from "@shared/util/store-util"
 
 export interface TodoState {
-  todoList: TodoItem[]
-  todoListActionState: ActionState
-}
+  todoList: TodoItem[];
+  todoListActionState: ActionState;
+};
 
 export const initialState: TodoState = {
   todoList: createTodoPrefillItems(),
@@ -26,14 +26,14 @@ export const todoFeature = createFeature({
       ...state,
       todoListActionState: ActionStateCreator.onStart()
     })),
-    on(TodoActions.postTodoSuccess, (state, todo) => ({
+    on(TodoActions.postTodoSuccess, (state, { todoItem }) => ({
       ...state,
-      todoList: [...state.todoList.map(item => Object.assign({}, item)), todo.data],
+      todoList: [...state.todoList.map(item => Object.assign({}, item)), todoItem],
       todoListActionState: ActionStateCreator.onSuccess()
     })),
-    on(TodoActions.postTodoError, (state, error) => ({
+    on(TodoActions.postTodoError, (state, { error }) => ({
       ...state,
-      todoListActionState: ActionStateCreator.onError(error.error)
+      todoListActionState: ActionStateCreator.onError(error)
     })),
 
     // ===== PUT =====
@@ -42,19 +42,19 @@ export const todoFeature = createFeature({
       ...state,
       todoListActionState: ActionStateCreator.onStart()
     })),
-    on(TodoActions.putTodoSuccess, (state, todo) => ({
+    on(TodoActions.putTodoSuccess, (state, { todoItem }) => ({
       ...state,
       todoList: [...state.todoList.map(item => Object.assign({}, item))].map(item => {
-        if (item.id === todo.data.id) {
-          return todo.data;
+        if (item.id === todoItem.id) {
+          return todoItem;
         }
         return item;
       }),
       todoListActionState: ActionStateCreator.onSuccess()
     })),
-    on(TodoActions.putTodoError, (state, error) => ({
+    on(TodoActions.putTodoError, (state, { error }) => ({
       ...state,
-      todoListActionState: ActionStateCreator.onError(error.error)
+      todoListActionState: ActionStateCreator.onError(error)
     })),
 
     // ===== DELETE =====
@@ -63,14 +63,14 @@ export const todoFeature = createFeature({
       ...state,
       todoListActionState: ActionStateCreator.onStart()
     })),
-    on(TodoActions.deleteTodoSuccess, (state, todo) => ({
+    on(TodoActions.deleteTodoSuccess, (state, { todoItem }) => ({
       ...state,
-      todoList: [...state.todoList].filter(item => item.id !== todo.data.id),
+      todoList: [...state.todoList].filter(item => item.id !== todoItem.id),
       todoListActionState: ActionStateCreator.onSuccess()
     })),
-    on(TodoActions.deleteTodoError, (state, error) => ({
+    on(TodoActions.deleteTodoError, (state, { error }) => ({
       ...state,
-      todoListActionState: ActionStateCreator.onError(error.error)
+      todoListActionState: ActionStateCreator.onError(error)
     })),
 
     // ===== OTHER =====
