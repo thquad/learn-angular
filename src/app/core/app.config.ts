@@ -2,14 +2,22 @@ import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideState, provideStore } from '@ngrx/store';
+import { ActionReducerMap, provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import { routes } from '@core/app.routes';
-import { todoFeature } from '@feature/todo-page/store/todo.feature';
+import { reducer, todoFeature, TodoState } from '@feature/todo-page/store/todo.feature';
 import { TodoEffects } from '@feature/todo-page/store/todo.effects';
 import { todoEntityFeature } from '@feature/todo-entity-page/store/todo-entity.feature';
 import { TodoEntityEffects } from '@feature/todo-entity-page/store/todo-entity.effects';
+
+interface AppState {
+  todo: TodoState
+};
+
+const reducers: ActionReducerMap<AppState> = {
+  todo: reducer
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,8 +26,7 @@ export const appConfig: ApplicationConfig = {
 
     // ===== STORE =====
 
-    provideStore(),
-    provideState(todoFeature),
+    provideStore(reducers),
     provideEffects(TodoEffects),
     provideState(todoEntityFeature),
     provideEffects(TodoEntityEffects),
