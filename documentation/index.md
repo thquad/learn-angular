@@ -13,6 +13,7 @@ Mostly it's my personal notes in the form of a project.
 - Components and styling
   - [Angular Material](./angular-material/angular-material.md)
 - NgRx (Angular Redux / Store)
+  - [NgRx](./NgRx/NgRx.md)
   - [Action](./NgRx/actions.md)
   - [Reducer](./NgRx/reducers.md)
   - [Selector](./NgRx/selector.md)

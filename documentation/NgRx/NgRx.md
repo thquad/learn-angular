@@ -174,12 +174,9 @@ export const selectTodo = createSelector(
 );
 ```
 
-To execute a selector, use `select()`.
-An `Observable` with the data is returned and updates automatically on state changes.
+A) returns the specific feature state from the `AppState`.
 
-```typescript
-this.store.select(selectTodo);
-```
+B) uses the state given by A and returns the `todoItem`.
 
 In the current example, the store service would pass the `AppState` to `selectTodo`, which is nothing more than the following object:
 
@@ -190,9 +187,12 @@ In the current example, the store service would pass the `AppState` to `selectTo
 }
 ```
 
-A) returns the specific feature state from the `AppState`.
+To execute a selector, use `select()`.
+An `Observable` with the data is returned and updates automatically on state changes.
 
-B) uses the state given by A and returns the `todoItem`.
+```typescript
+this.store.select(selectTodo);
+```
 
 Usually the feature state is written as a separate function, because then it can be reused accross different selectors.
 
@@ -216,14 +216,16 @@ Full example code:
 export type TodoItem = {
   text: string
 }
-
+```
+```typescript
 // todo.actions.ts
 
 export const CreateTodo = createAction(
   '[Todo] Create Todo',
   props<{ todoItem: TodoItem }>()
 );
-
+```
+```typescript
 // todo.reducer.ts
 
 export interface TodoState {
@@ -241,8 +243,10 @@ export const todoReducer = createReducer(
     todoItem: action.todoItem
   }))
 );
-
+```
+```typescript
 // app.reducer.ts
+
 interface AppState {
   todo: TodoState
 };
@@ -250,7 +254,8 @@ interface AppState {
 const reducers: ActionReducerMap<AppState> = {
   todo: todoReducer
 }
-
+```
+```typescript
 // todo.selector.ts
 
 export const selectTodoState = (state: AppState) => state.todo;
@@ -259,11 +264,13 @@ export const selectTodo = createSelector(
   selectTodoState,
   (state) => state.todoItem
 );
-
+```
+```typescript
 // inside app.module.ts
 
 StoreModule.forRoot(reducers)
-
+```
+```typescript
 // using the store inside a component
 
 store: Store = inject(Store);
