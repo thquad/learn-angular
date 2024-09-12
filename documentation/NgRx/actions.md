@@ -1,11 +1,10 @@
 [index.md](../index.md) > actions.md
 
-TOC
 - [Actions](#actions)
 - [Datastructure of actions](#datastructure-of-actions)
 - [Creating actions](#creating-actions)
 - [Using actions](#using-actions)
-- [Creator functions in different versions](#creator-functions-in-different-versions)
+- [Creating actions in different versions](#creating-actions-in-different-versions)
   - [Old](#old)
   - [NgRx v7](#ngrx-v7)
   - [NgRx v14](#ngrx-v14)
@@ -26,6 +25,7 @@ interface Action {
 ```
 
 `type` is used to describe the action, with the context in square brackets: `"[Source] Event"`.
+But using the exact syntax is not important [until NgRx v14](#ngrx-v14).
 
 Some examples:
 - "[Users] Create User"
@@ -89,7 +89,7 @@ this.store.dispatch({
 });
 ```
 
-## Creator functions in different versions
+## Creating actions in different versions
 
 All of these implementations will generate the same POJO as described above.
 
@@ -158,9 +158,19 @@ export const TodoActions = createActionGroup({
 
 `createActionGroup` was introduced.
 
-The type syntax becomes important again, since the action name will be generated as lower CamelCase based on the string. The string defined in `source` will be added to the beginning of the type as the context.
+The type syntax becomes important, since the action name will be generated as lower CamelCase based on the string. The string defined in `source` will be added to the beginning of the type as the context.
 
-Example:
+The above ActionGroup will have the following generated methods.
+
+```typescript
+TodoActions.postTodo()
+TodoActions.postTodoSuccess()
+TodoActions.postTodoError()
+```
+
+`'Post Todo'` will add a `TodoAction.postTodo` method to `TodoAction`, with a type-string of `'[Todo] Post Todo'`.
+
+
 
 ```typescript
 TodoActions.postTodo({todoItem: {text: 'example'}});
@@ -175,4 +185,3 @@ TodoActions.postTodo({todoItem: {text: 'example'}});
 }
 ```
 
-`'Post Todo'` will add a `TodoAction.postTodo` method to `TodoAction`, with a type-string of `'[Todo] Post Todo'`.

@@ -1,17 +1,14 @@
 [index.md](../index.md) > NgRx.md
 
-<!-- TOC -->
-
 - [NgRx](#ngrx)
 - [How the store works](#how-the-store-works)
-  - [1. Create a state](#1-create-a-state)
-  - [2. Trigger actions to change the state](#2-trigger-actions-to-change-the-state)
-  - [3. React to triggered actions within the reducer](#3-react-to-triggered-actions-within-the-reducer)
-  - [4. Adding more reducers to the store service](#4-adding-more-reducers-to-the-store-service)
+  - [1. Create a state inside the reducer](#1-create-a-state-inside-the-reducer)
+  - [2. Adding more reducers to the store service](#2-adding-more-reducers-to-the-store-service)
+  - [3. Trigger actions to change the state](#3-trigger-actions-to-change-the-state)
+  - [4. React to triggered actions within the reducer](#4-react-to-triggered-actions-within-the-reducer)
   - [5. Retrieving data with selectors](#5-retrieving-data-with-selectors)
   - [6. Summary](#6-summary)
 
-<!-- /TOC -->
 
 # NgRx
 
@@ -37,9 +34,11 @@ The selector retrieves data from the state within the store service.
 
 # How the store works
 
+This example uses NgRx v7.
+
 The purpose of this section is to give you an understanding of what the individual parts do and how they interact with each other. Try to not get hung up by the syntax. All the parts are explained in detail in their own chapters.
 
-## 1. Create a state
+## 1. Create a state inside the reducer
 
 Inside a reducer, the actual data (state) is stored.
 
@@ -66,7 +65,31 @@ StoreModule.forRoot({todo: todoReducer})
 
 There can be more than one reducer. Each state within different reducers are called "feature states", because they contain data for different features.
 
-## 2. Trigger actions to change the state
+## 2. Adding more reducers to the store service
+
+A store usually contains multiple feature states (multiple reducers).
+
+To reference the whole state later on for type safety, all reducers are defined within an `AppState`.
+
+```typescript
+interface AppState {
+  todo: TodoState,
+  other: OtherState
+};
+
+const reducers: ActionReducerMap<AppState> = {
+  todo: todoReducer,
+  other: otherReducer
+}
+```
+
+And like in [1. Create a state](#1-create-a-state), the dictionary of reducers is passed to the store service.
+
+```typescript
+StoreModule.forRoot(reducers)
+```
+
+## 3. Trigger actions to change the state
 
 Actions are triggered events, they contain only data and no logic. In other words, actions are POJO (plain old javascript object) and defined via a simple interface.
 
@@ -116,7 +139,7 @@ this.store.dispatch(CreateTodo);
 
 The store service will then inform the reducer (and effects), that an action with the given object has been triggered.
 
-## 3. React to triggered actions within the reducer
+## 4. React to triggered actions within the reducer
 
 To react to the action inside the reducer, a reducer function is added.
 
@@ -137,31 +160,14 @@ To change the state, a new state must be returned (with deep copies).
 
 This reducer functions first of all spreads the current state in a new object and replaces the old values with the data given in the action-object.
 
-## 4. Adding more reducers to the store service
-
-A store usually contains multiple feature states (multiple reducers).
-
-To reference the whole state (all reducers) later on for type safety, all reducers are defined in an `AppState`.
-
-```typescript
-interface AppState {
-  todo: TodoState,
-  other: OtherState
-};
-
-const reducers: ActionReducerMap<AppState> = {
-  todo: todoReducer,
-  other: otherReducer
-}
-```
-
-And like in [1. Create a state](#1-create-a-state), the dictionary of reducers is passed to the store service.
-
-```typescript
-StoreModule.forRoot(reducers)
-```
-
 ## 5. Retrieving data with selectors
+
+To execute a selector, use `select()` and **pass the selector to the store**.
+An `Observable` with the data is returned and updates automatically on state changes.
+
+```typescript
+this.store.select(selectTodo);
+```
 
 A selector is a function, which returns specific data from a feature state.
 
@@ -178,20 +184,13 @@ A) returns the specific feature state from the `AppState`.
 
 B) uses the state given by A and returns the `todoItem`.
 
-In the current example, the store service would pass the `AppState` to `selectTodo`, which is nothing more than the following object:
+In the current example, the store service would pass the `AppState` to `selectTodo`, so the store is doing something like this internally:
 
 ```typescript
-{
+return selectTodo({
   todo: todoReducer,
   other: otherReducer
-}
-```
-
-To execute a selector, use `select()`.
-An `Observable` with the data is returned and updates automatically on state changes.
-
-```typescript
-this.store.select(selectTodo);
+});
 ```
 
 Usually the feature state is written as a separate function, because then it can be reused accross different selectors.
