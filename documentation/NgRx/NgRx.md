@@ -16,12 +16,16 @@
 
 Redux is a store library. NgRx (Ng = angular, Rx = redux), is an implementation of Redux for Angular.
 
+"A 'store' is basically a container that holds your application **state**."
+
+Save data inside the store, access it later on a different page. It's like a cache for the app.
+
 ![NgRx overview diagram](../assets/ngrx-overview.svg)
 
 Quick overview:
-- [Actions](./actions.md) are triggered events.
+- [Actions](./actions.md) are used to change data. They are triggered events.
 - [Selectors](./selector.md) retrieve data from the state.
-- [Reducers](./reducers.md) contain the actual data / state. Reducer functions inside the reducer listen for triggered actions to manipulate the state.
+- [Reducers](./reducers.md) contain the actual data / state. Reducer listen for triggered actions to manipulate the state.
 - Effects are for asynchronous operations. Effects listen for triggered actions to execute.
 
 The store is accessed through a store service. The store service can be injected into components like this: `store = inject(Store);`
