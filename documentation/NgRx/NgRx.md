@@ -23,9 +23,9 @@ Save data inside the store, access it later on a different page. It's like a cac
 ![NgRx overview diagram](../assets/ngrx-overview.svg)
 
 Quick overview:
-- [Actions](./actions.md) are used to change data. They are triggered events.
+- [Actions](./actions.md) are events. You trigger an action, if you want to change data in the state.
 - [Selectors](./selector.md) retrieve data from the state.
-- [Reducers](./reducers.md) contain the actual data / state. Reducer listen for triggered actions to manipulate the state.
+- [Reducers](./reducers.md) contain the actual data / state. Reducer also listen for triggered actions to manipulate the state.
 - Effects are for asynchronous operations. Effects listen for triggered actions to execute.
 
 The store is accessed through a store service. The store service can be injected into components like this: `store = inject(Store);`
