@@ -13,11 +13,11 @@
 
 ![NgRx reducer diagram](../assets/ngrx-reducer.svg)
 
-A reducer consists of two parts:
+A reducer is a function, which consists of two parts:
 - The state, or actual data of the store.
 - Reducer-functions, which are executed when specific actions are triggered.
 
-> Reducers are actually `ActionReducer`, NgRx loves to confuse people.
+> Reducers are actually `ActionReducer`, NgRx loves confusing syntax.
 
 ```typescript
 export interface TodoState {
@@ -62,7 +62,7 @@ Additional reducers can be added throughout the code with `forFeature()`.
 StoreModule.forFeature('todo', todoReducer);
 ```
 
-> There doesn't seem to be a reason why `forRoot()` and `forFeature()` are not just one combined function. I assume it's because `forRoot()` creates the initial instance of the store service, but then it should have been called something less confusing like `createStore()`. NgRx loves to confuse people.
+> There doesn't seem to be a reason why `forRoot()` and `forFeature()` are not just one combined function. I assume it's because `forRoot()` creates the initial instance of the store service, but then it should have been called something less confusing like `createStore()`. NgRx loves confusing syntax.
 > 
 > Luckily NgRx gets rid of this syntax with the introduction of the Standalone API.
 
@@ -79,7 +79,7 @@ StoreModule.forRoot({
 }),
 ```
 
-Adding reducers to the store service is usually done by defining an `AppState` and adding all the reducers to a `ActionReducerMap`.
+Adding multiple reducers to the store service is usually done by defining an `AppState` and adding all the reducers to a `ActionReducerMap`.
 
 ```typescript
 interface AppState {
@@ -93,11 +93,9 @@ const reducers: ActionReducerMap<AppState> = {
 }
 ```
 
-The `AppState` defines a structure for states, while the `ActionReducerMap` contains reducers.
+The interface `AppState` can be referenced by the selector later.
 
-The selector can then reference the `AppState`, while the store registers the reducers with the `ActionReducerMap`.
-
-The `ActionReducerMap` is passed to the store as usual.
+The `ActionReducerMap` is an object (also called dictionary or map) that is passed to the store.
 
 ```typescript
 StoreModule.forRoot(reducers),
@@ -116,7 +114,7 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-> Why `provideState` instead of `provideReducer`? NgRx loves to confuse people.
+> Why `provideState` instead of `provideReducer`? NgRx loves confusing syntax.
 
 The method with `ActionReducerMap` like in [Reducers with modules](#reducers-with-modules) works here as well.
 

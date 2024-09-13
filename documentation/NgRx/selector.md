@@ -2,54 +2,74 @@
 
 # Selector
 
-## featureSelector
-
-Difference between selector and featureSelector explained here: https://ngrx.io/guide/store/selectors
-
-The difference is best explained with an actual example:
+The store service executes selectors to retrieve data.
+A selector is a function, which consists of two parts:
+- feature selector
+- "data selector"
 
 ```typescript
-import { createSelector } from '@ngrx/store';
-
-export interface FeatureState {
-  counter: number;
-}
-
-export interface AppState {
-  feature: FeatureState;
-}
-
-export const selectFeature = (state: AppState) => state.feature;
-
-export const selectFeatureCount = createSelector(
+export const selectSomething = createSelector(
   selectFeature,
-  (state: FeatureState) => state.counter
+  selectData
 );
 ```
+
+The selector first needs to get the correct feature state.
+For this example, there are 2 feature states (reducers) in the store.
+
+```typescript
+interface AppState {
+  todo: TodoState,
+  other: OtherState
+};
+
+const reducers: ActionReducerMap<AppState> = {
+  todo: todoReducer,
+  other: otherReducer
+}
+
+StoreModule.forRoot(reducers)
+```
+
+Getting the `todo` state requires a feature selector first (`selectTodo`).
+
+Values can then be retrieved from the `TodoState` with another "data selector".
+
+```typescript
+export const selectTodo = (state: AppState) => state.todo;
+
+export const selectFeatureCount = createSelector(
+  selectTodo,
+  (state: TodoState) => state.todoItem
+);
+```
+
+## featureSelector
 
 ```typescript
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
-export const featureKey = 'feature';
+export const todoKey = 'todo';
 
-export interface FeatureState {
-  counter: number;
+export interface TodoState {
+  todoItem: TodoItem;
 }
 
-export const selectFeature = createFeatureSelector<FeatureState>(featureKey);
+export const selectTodoState = createFeatureSelector<TodoState>(todoKey);
 
-export const selectFeatureCount = createSelector(
-  selectFeature,
-  (state: FeatureState) => state.counter
+export const selectTodoItem = createSelector(
+  selectTodoState,
+  (state: TodoState) => state.todoItem
 );
 ```
 
-What is the `featureKey` used for? I have no frikking idea. There is no explanation anywhere, but here is my best guess:
+The only advantage when using the `featureSelector` seems to be, that an `AppState` doesn't need to be defined to ensure type safety.
 
-`createFeatureSelector` returns a function, which is then used by the store.
-So the featureSelector will then look inside the store, to retrieve the specific reducer.
-The reducer is retrieved, by using the `featureKey`, similar to how properties in a javascript object can be retrieved by either using dot or array index: A) `duck.size` B) `duck['size']`
+The `featureKey` is never explained, but it's the key you are using for your reducer. In this case it's `todo`.
 
-`featureKey` needs to have the same name as the reducer.
-
-Fortunately `featureCreator` makes the featureSelector obsolete and we don't need to think about this anymore.
+```typescript
+{
+  todo: todoReducer,
+  other: otherReducer
+}
+```
