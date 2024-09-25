@@ -51,4 +51,17 @@ describe('TodoListComponent', () => {
     component.onEditToggle(todoItem);
     expect(component.editTodo).toHaveSize(0);
   });
+
+  it('onEdit should edit todo and emit edit event', () => {
+    let newText = 'changed';
+    let editEventSpy = spyOn(component.editEvent, 'emit');
+    component.onEdit(newText, todoItem);
+    expect(editEventSpy).toHaveBeenCalledWith({id: '1', text: newText});
+  });
+
+  it('onDelete should emit delete event', ()=>{
+    let deleteEventSpy = spyOn(component.deleteEvent, 'emit');
+    component.onDelete(todoItem);
+    expect(deleteEventSpy).toHaveBeenCalledWith(todoItem);
+  });
 });
