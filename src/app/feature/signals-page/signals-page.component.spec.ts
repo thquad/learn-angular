@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignalsPageComponent } from './signals-page.component';
+import { MatButton } from '@angular/material/button';
 
 describe('SignalsPageComponent', () => {
   let component: SignalsPageComponent;
@@ -8,7 +9,10 @@ describe('SignalsPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SignalsPageComponent]
+      imports: [
+        SignalsPageComponent,
+        MatButton
+      ]
     })
     .compileComponents();
     

@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SideNavigationComponent } from './side-navigation.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDivider } from '@angular/material/divider';
+import { RouterModule } from '@angular/router';
 
 describe('SideNavigationComponent', () => {
   let component: SideNavigationComponent;
@@ -8,7 +11,12 @@ describe('SideNavigationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SideNavigationComponent]
+      imports: [
+        SideNavigationComponent,
+        RouterModule.forRoot([]),
+        MatDivider,
+        MatButtonModule
+      ]
     })
     .compileComponents();
     

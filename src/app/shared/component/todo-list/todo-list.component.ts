@@ -13,14 +13,22 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
   selector: 'app-todo-list',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatIconModule, MatIconButton, CommonModule, MatCard, MatFormFieldModule, MatInputModule, MatProgressSpinner],
+  imports: [
+    MatIconModule,
+    MatIconButton,
+    CommonModule,
+    MatCard,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinner
+  ],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.scss',
   animations: [slideEnterLeaveTrigger]
 })
 export class TodoListComponent {
   private _items!: TodoItem[];
-  @Input() set items (items: TodoItem[]){
+  @Input() set items(items: TodoItem[]) {
     this.loadingTodo = [];
     this._items = items;
   }
@@ -38,7 +46,7 @@ export class TodoListComponent {
   private toLeave: TodoItem[] = [];
 
   // for animation states
-  animate(todoItem: TodoItem){
+  animate(todoItem: TodoItem) {
     /**
      * Since the whole item list is refreshed, all items in the list
      * will be animated with any changes, since the whole list is
@@ -48,14 +56,14 @@ export class TodoListComponent {
      */
     let state = '';
 
-    if(!this.toEnter.some(item => item.id === todoItem.id)){
+    if (!this.toEnter.some(item => item.id === todoItem.id)) {
       this.toEnter.push(todoItem);
-      state = 'in'; 
+      state = 'in';
     }
 
-    if(this.toLeave.some(item => item.id === todoItem.id)){
+    if (this.toLeave.some(item => item.id === todoItem.id)) {
       this.toEnter.push(todoItem);
-      state = 'out'; 
+      state = 'out';
     }
 
     return state;
@@ -70,7 +78,7 @@ export class TodoListComponent {
   }
 
   onEditToggle(todoItem: TodoItem): void {
-    if(this.editTodo.find(item => item.id === todoItem.id)){
+    if (this.editTodo.find(item => item.id === todoItem.id)) {
       this.editTodo = this.editTodo.filter(item => item.id !== todoItem.id);
     } else {
       this.editTodo.push(todoItem);

@@ -10,7 +10,6 @@ import { SideNavigationComponent } from '@core/components/side-navigation/side-n
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet,
     RouterModule,
     MatSidenavModule,
     MatToolbarModule,

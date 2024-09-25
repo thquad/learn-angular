@@ -21,10 +21,6 @@
       "ES2022",
       "dom",
     ],
-    "typeRoots": [
-      "node_modules/@types",
-      "node_modules/@angular/material",
-    ],
     "paths": {
       "@core/*": ["./src/app/core/*"],
       "@feature/*": ["./src/app/feature/*"],

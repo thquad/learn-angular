@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, inject } from '@angular/core';
-import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
 import { MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButton } from '@angular/material/button';
 import { MatCard } from '@angular/material/card';
 import { TodoItem } from '../../model/todo.model';
 import { TodoListComponent } from '../todo-list/todo-list.component';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-todo-widget',
@@ -14,7 +14,15 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
   styleUrl: './todo-widget.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [MatInputModule, MatLabel, ReactiveFormsModule, TodoListComponent, AsyncPipe, MatCard, MatButton],
+  imports: [
+    MatInputModule,
+    MatLabel,
+    ReactiveFormsModule,
+    TodoListComponent,
+    AsyncPipe,
+    MatCard,
+    MatButton
+  ],
 })
 export class TodowidgetComponent {
   private fb = inject(FormBuilder);
