@@ -1,6 +1,7 @@
 [index.md](../index.md) > NgRx.md
 
 - [NgRx](#ngrx)
+- [Rough overview on how to use](#rough-overview-on-how-to-use)
 - [How the store works](#how-the-store-works)
   - [1. Create a state inside the reducer](#1-create-a-state-inside-the-reducer)
   - [2. Adding more reducers to the store service](#2-adding-more-reducers-to-the-store-service)
@@ -35,6 +36,47 @@ The single store service is the mediator between actions, selectors, reducers an
 The reducers and effects inside the store service will be notified via the store service, when an action is triggered.
 
 The selector retrieves data from the state within the store service.
+
+# Rough overview on how to use
+
+```typescript
+export class UserComponent {
+  // A
+  store = inject(Store);
+
+  // B
+  user$ = this.store.select(selectUser);
+
+  onLogin(data: UserData): void {
+    // C
+    this.store.dispatch({
+      type: "[User] login",
+      user: data
+    });
+  }
+}
+```
+
+A) The store service is injected.
+
+B) Get data with `select()`. Pass a "selector". `selectUser` is a pure function and does nothing else than select a property from the store object.
+
+Imagine the store as an object:
+
+```typescript
+{
+  user: "Michael",
+  password: "1234"
+}
+```
+
+A selector to retrieve the username would then be something like this:
+
+```typescript
+selectUser = (state) => state.user
+```
+
+C) Change data with `dispatch()`. Pass an "action". Actions are events. An action is just a POJO (plain old javascript object), describes what is happening and holds data.
 
 # How the store works
 
